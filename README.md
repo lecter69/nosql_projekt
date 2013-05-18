@@ -46,3 +46,7 @@ end
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
 
 ##### Sposób 2
+
+```js
+TODO
+```
