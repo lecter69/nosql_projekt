@@ -19,6 +19,8 @@ mongodb = MongoClient.new("localhost", 27017, w: 1, wtimeout: 200, j: true).db("
 
 result.each do |key, value|
   location = value["location"].split("|")
-  value["location"] = [location[0], location[1]]
+  value["location"] = [location[0].to_f, location[1].to_f]
   mongodb.collection("caches").insert(value)
 end
+
+mongodb.collection("caches").ensure_index({ location: '2d'})

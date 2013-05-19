@@ -1,7 +1,3 @@
-require "mongo"
-require "uri"
-include Mongo
-
 class AppController < ApplicationController
 
   def index
@@ -9,15 +5,15 @@ class AppController < ApplicationController
   end
   
   def findCaches
-  
-    #mongodb = MongoClient.new("localhost", 27017, w: 1, wtimeout: 200, j: true).db("test")
-    
-    #caches_collection = mongodb.collection("caches")
 
     latitude = params[:latitude]
-    longitute = params[:longitute]
+    longitude = params[:longitude]
+    radius = params[:radius]
+
+    #caches = Cache.where(:location.near => [latitude.to_f, longitude.to_f]).limit(limit.to_i)
+    caches = Cache.geo_near([latitude.to_f, longitude.to_f]).max_distance(radius.to_i/111.12)
     
-    render :json => { test: latitude }
+    render :json => { status: 1, caches: caches }
     
   end
   

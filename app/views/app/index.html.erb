@@ -1,10 +1,18 @@
-<div class="text-center">
-  <h3>Twoje współrzędne:</h3>
-  <div>
-    N <input type="text" id="latitude"> °
-    <br>
-    E <input type="text" id="longitude"> °
-  </div>
-  <div class="btn btn-primary" id="localize_me">Zlokalizuj mnie</div>
-  <div class="btn btn-primary" id="find">Szukaj</div>
+<h3>Twoje współrzędne:</h3>
+<div>
+  N <input type="text" id="latitude" placeholder="XX.XXXXX"> °
 </div>
+<div>
+  E <input type="text" id="longitude" placeholder="XX.XXXXX"> °
+</div>
+<div>
+  <select id="radius">
+    <option>promień</option>
+    <option value="3">3 km</option>
+    <option value="5">5 km</option>
+    <option value="100">10 km</option>
+    <option value="200">20 km</option>
+  </select>
+</div>
+<div class="btn btn-primary" id="localize_me">Zlokalizuj mnie</div>
+<div class="btn btn-primary" id="find">Szukaj</div>

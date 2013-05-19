@@ -28,3 +28,7 @@ body {
 .btn {
   width: 100px;
 }
+
+table {
+  font-size: 14px !important;
+}
