@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>App</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>OpenCaching Nearest</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-inner">
 
-<%= yield %>
+        <div>
+          <div class="brand">
+            <a href="">Szukaj</a>
+          </div>
+        </div>
+         
+        <div class="pull-right">
+          <div class="brand">OC Nearest</div>
+        </div>
+        
+      </div>
+    </header>
+    
+    <div id="content">
 
-</body>
+      <%= yield %>
+
+    </div>
+  </body>
 </html>

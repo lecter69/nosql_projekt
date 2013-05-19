@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+ 
+body {
+  font-size: 18px !important;
+}
+
+.navbar .brand {
+  margin-right: -20px;
+}
+
+#content {
+  margin-top: -30px;
+  padding: 20px;
+}
+
+.btn {
+  width: 100px;
+}

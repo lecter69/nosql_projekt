@@ -1,5 +1,6 @@
 App::Application.routes.draw do
   get "app/index"
+  post "app/findCaches"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
