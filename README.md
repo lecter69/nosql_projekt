@@ -3,18 +3,11 @@
 
 # OpenCaching Nearest
 
-Aplikacja szuka najbliższe skrzynki geocache na podstawie pozycji szukającego.
+Aplikacja znajduje najbliższe skrzynki geocache na podstawie aktualnej pozycji szukającego.
 
 #### Przygotowania
 
-Przygotujemy bazę mongo na dwa sposoby:
-
-* gotowy skrypy w ruby
-* z użyciem skryptu ruby, narzędzia Google Refine oraz mongoimport
-
-Bazę uzupełnimy o 500 skrzynek w Trójmieście. Wykorzystamy API ze strony opencaching.pl.
-
-##### Sposób 1
+Przygotujemy bazę mongo wykorzystując gotowy skrypy w ruby. Bazę uzupełnimy o 500 skrzynek z Trójmiasta. Wykorzystamy API ze strony opencaching.pl.
 
 ```ruby
 require "mongo"
@@ -45,8 +38,3 @@ end
 
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
 
-##### Sposób 2
-
-```js
-TODO
-```
