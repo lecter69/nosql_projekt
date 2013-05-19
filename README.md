@@ -32,10 +32,10 @@ mongodb = MongoClient.new("localhost", 27017, w: 1, wtimeout: 200, j: true).db("
 result.each do |key, value|
   location = value["location"].split("|")
   value["location"] = [location[0].to_f, location[1].to_f]
-  mongodb.collection("cache").insert(value)
+  mongodb.collection("caches").insert(value)
 end
 
-mongodb.collection("cache").ensure_index({ location: '2d'})
+mongodb.collection("caches").ensure_index({ location: '2d'})
 ```
 
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
