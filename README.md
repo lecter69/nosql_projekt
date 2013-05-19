@@ -3,17 +3,38 @@
 
 # OpenCaching Nearest
 
-Aplikacja szuka najbliższe skrzynki geocache na podstawie pozycji szukającego.
+Aplikacja znajduje najbliższe skrzynki geocache na podstawie aktualnej pozycji szukającego.
 
 #### Przygotowania
 
-Przygotujemy bazę mongo na dwa sposoby:
+Przygotujemy bazę mongo wykorzystując gotowy skrypy w ruby. Bazę uzupełnimy o 500 skrzynek z Trójmiasta. Wykorzystamy API ze strony opencaching.pl.
 
-* gotowy skrypy w ruby
-* z użyciem skryptu ruby, narzędzia Google Refine oraz mongoimport
+```ruby
+require "mongo"
+require "json"
+require "open-uri"
+include Mongo
 
-Bazę uzupełnimy o 500 skrzynek w Trójmieście. Wykorzystamy API ze strony opencaching.pl.
+url = "http://opencaching.pl/okapi/services/caches/search/nearest?center=54.395732|18.573622"\
+  "&status=Available&consumer_key=HpLvDvvjmG3HkeX8RsgU&limit=500"
 
-##### Sposób 1
+data = open(URI::encode(url)).read
+result = JSON.parse(data)
 
-##### Sposób 2
+url = "http://opencaching.pl/okapi/services/caches/geocaches?cache_codes="\
+  + result["results"].join("|") + "&consumer_key=HpLvDvvjmG3HkeX8RsgU&limit=500"
+
+data = open(URI::encode(url)).read
+result = JSON.parse(data)
+
+mongodb = MongoClient.new("localhost", 27017, w: 1, wtimeout: 200, j: true).db("test")
+
+result.each do |key, value|
+  location = value["location"].split("|")
+  value["location"] = [location[0], location[1]]
+  mongodb.collection("caches").insert(value)
+end
+```
+
+Link do skryptu: [mongo.rb](/doc/mongo.rb)
+
