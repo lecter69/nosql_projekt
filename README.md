@@ -3,7 +3,7 @@
 
 # OpenCaching Nearest
 
-Aplikacja znajduje najbliższe skrzynki geocache na podstawie aktualnej pozycji szukającego.
+Aplikacja, przeznaczona na telefony komórkowe, znajduje najbliższe skrzynki geocache na podstawie aktualnej pozycji szukającego.
 
 #### Przygotowania
 
@@ -40,3 +40,4 @@ mongodb.collection("cache").ensure_index({ location: '2d'})
 
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
 
+#### Aplikacja
