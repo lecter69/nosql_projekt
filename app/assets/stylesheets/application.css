@@ -32,3 +32,17 @@ body {
 table {
   font-size: 14px !important;
 }
+
+input[type="submit"] {
+  width: 126px !important;
+}
+
+#spinner {
+  background: url("/assets/spinner.gif") center no-repeat;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  display: none;
+}

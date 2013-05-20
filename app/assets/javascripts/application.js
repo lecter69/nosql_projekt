@@ -15,23 +15,73 @@
 //= require_tree .
 
 $(function() {
+
+    $(document).ajaxStart(function() {
     
-    function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        }
-    }
+        $("#spinner").show();
+        
+    });
     
+    $(document).ajaxStop(function() {
+    
+        $("#spinner").hide();
+        
+    });
+
     function showPosition(position) {
+    
+        $(document).trigger("ajaxStop");
         $("#latitude").val(position.coords.latitude.toFixed(5));
         $("#longitude").val(position.coords.longitude.toFixed(5));
+        
     }
     
     $("#localize_me").click(function() {
-        getLocation();
+    
+        $(document).trigger("ajaxStart");
+        
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        
     });
     
+    function validate() {
+
+        var latitude, longitude, radius, result;
+        
+        $(".text-error").html("");
+        
+        result = true;
+        
+        latitude = $("#latitude").val();
+        longitude = $("#longitude").val();
+        radius = $("#radius").val();
+        
+        if (null == latitude.match(/^\d{1,2}.\d+$/)) {
+            result = false;
+            $("#latitude").parent().children(".text-error").eq(0).html("Zły format współrzędnych:");
+        }
+        
+        if (null == longitude.match(/^\d{1,2}.\d+$/)) {
+            result = false;
+            $("#longitude").parent().children(".text-error").eq(0).html("Zły format współrzędnych:");
+        }
+        
+        if (null == radius.match(/^\d+$/)) {
+            result = false;
+            $("#radius").parent().children(".text-error").eq(0).html("Wybierz promień:");
+        }
+        
+        return result;
+        
+    }
+    
     $("#find").click(function() {
+    
+        if(false == validate()) {
+            return;
+        }
         
         var request = $.ajax({
             url: "/app/findCaches",
@@ -45,10 +95,10 @@ $(function() {
          
         request.done(function(msg) {
             if(1 == msg.status) {
-                $("#content").html("<table class='table table-bordered'><tr><td>#</td><td>nazwa</td><td>dystans</td></tr></table>");
+                $("#content").html("<table class='table table-bordered'><tr><td>#</td><td>Nazwa</td><td>Dystans</td></tr></table>");
                 $.each(msg.caches, function(key, value) {
                 console.log(value)
-                    $("table").append("<tr><td>" + (key + 1) + "</td><td><a href='http://m.opencaching.pl/googlemaps.php?wp=" + value.code + "'>" + value.name + "</a></td><td>" + (value.geo_near_distance * 111.12).toFixed(1) + "</td></tr>");
+                    $("table").append("<tr><td>" + (key + 1) + "</td><td><a href='http://m.opencaching.pl/googlemaps.php?wp=" + value.code + "'>" + value.name + "</a></td><td>" + (value.geo_near_distance * 111.12).toFixed(1) + "km</td></tr>");
                 });
             } else {
                 alert("Wystąpił błąd!");
