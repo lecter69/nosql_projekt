@@ -50,3 +50,7 @@ input[type="submit"] {
 #results {
   margin-top: 30px;
 }
+
+.col3 {
+  white-space: nowrap;
+}
