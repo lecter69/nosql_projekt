@@ -37,6 +37,11 @@ input[type="submit"] {
   width: 126px !important;
 }
 
+input[type="text"] {
+  margin-bottom: 0 !important;
+  margin-top: -4px;
+}
+
 #spinner {
   background: url("/assets/spinner.gif") center no-repeat;
   height: 16px;
@@ -53,4 +58,9 @@ input[type="submit"] {
 
 .col3 {
   white-space: nowrap;
+}
+
+.input-outer {
+  margin-bottom: 10px;
+  padding-top: 4px;
 }
