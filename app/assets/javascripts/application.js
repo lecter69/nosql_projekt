@@ -95,9 +95,8 @@ $(function() {
          
         request.done(function(msg) {
             if(1 == msg.status) {
-                $("#content").html("<table class='table table-bordered'><tr><td>#</td><td>Nazwa</td><td>Dystans</td></tr></table>");
+                $("#results").html("<table class='table table-bordered'><tr><td>#</td><td>Nazwa</td><td>Dystans</td></tr></table>");
                 $.each(msg.caches, function(key, value) {
-                console.log(value)
                     $("table").append("<tr><td>" + (key + 1) + "</td><td><a href='http://m.opencaching.pl/googlemaps.php?wp=" + value.code + "'>" + value.name + "</a></td><td>" + (value.geo_near_distance * 111.12).toFixed(1) + "km</td></tr>");
                 });
             } else {
