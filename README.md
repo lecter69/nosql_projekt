@@ -42,6 +42,22 @@ mongodb.collection("caches").ensure_index({ location: '2d'})
 
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
 
+Przykładowy dokument:
+
+```json
+{
+  "_id" : ObjectId("5198c0341d41c80f9b000001"),
+  "code" : "OP2C0E",
+  "name" : "jedrek01- House of President",
+  "location" : [
+    54.3961,
+    18.566583
+  ],
+  "type" : "Other",
+  "status" : "Available"
+}
+```
+
 #### Aplikacja
 
 Wykorzystano:
