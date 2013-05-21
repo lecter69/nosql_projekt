@@ -41,3 +41,9 @@ mongodb.collection("caches").ensure_index({ location: '2d'})
 Link do skryptu: [mongo.rb](/doc/mongo.rb)
 
 #### Aplikacja
+
+#### Zrzuty ekranu
+
+| ![](/doc/screen1.png) | ![](/doc/screen2.png) |
+| :-: | :-: |
+| ![](/doc/screen3.png) | ![](/doc/screen4.png) |
