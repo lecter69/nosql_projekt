@@ -64,3 +64,11 @@ input[type="text"] {
   margin-bottom: 10px;
   padding-top: 4px;
 }
+
+.inline-block {
+  display: inline-block;
+}
+
+.outher-div {
+  width: 15px;
+}
